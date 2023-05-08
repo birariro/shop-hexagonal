@@ -1,0 +1,18 @@
+package com.challenge.shop_hexagonal.application.out.persistence.item;
+
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+import com.challenge.shop_hexagonal.application.out.persistence.Item;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@DiscriminatorValue("M")
+@Getter
+@Setter
+public class Movie extends Item {
+    private String director;
+    private String actor;
+}

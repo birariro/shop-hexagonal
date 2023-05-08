@@ -1,0 +1,19 @@
+package com.challenge.shop_hexagonal.application.out.persistence.item;
+
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+import com.challenge.shop_hexagonal.application.out.persistence.Item;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@DiscriminatorValue("A")
+@Getter
+@Setter
+public class Album extends Item {
+
+    private String artist;
+    private String etc;
+}
