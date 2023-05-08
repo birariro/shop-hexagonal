@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+
+  sh-mariadb:
+    container_name: sh-mariadb
+    image: mariadb:10.8.3
+    volumes:
+      - ./share/db/init/:/docker-entrypoint-initdb.d/
+    ports:
+      - "15495:3306"
+    environment: # 환경 변수 전달
+      MYSQL_ROOT_PASSWORD: "0000"
+      MYSQL_DATABASE: "shop_db"
+    command: [ 'mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci' ]
