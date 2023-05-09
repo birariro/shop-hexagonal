@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
-
+import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +21,7 @@ import lombok.Setter;
 @Setter
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE) //자식 정보를 모두 하나의 테이블로 만든다.
 @DiscriminatorColumn(name = "dtype")
+@Table(name = "tb_item")
 public abstract class ItemEntity {
     @Id
     @GeneratedValue
@@ -33,7 +34,4 @@ public abstract class ItemEntity {
 
     @ManyToMany(mappedBy = "items")
     private List<CategoryEntity> categories = new ArrayList<>();
-
-
-
 }

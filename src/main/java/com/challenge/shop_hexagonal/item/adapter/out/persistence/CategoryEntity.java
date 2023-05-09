@@ -30,7 +30,7 @@ class CategoryEntity {
     private String name;
 
     @ManyToMany
-    @JoinTable(name = "category_item",
+    @JoinTable(name = "tb_category_item",
                 joinColumns = @JoinColumn(name = "category_id"),
                 inverseJoinColumns = @JoinColumn(name = "item_id")) //다대다는 테이블에서는 구현하기위해서는 중간 테이블이 필요하다.
     private List<ItemEntity> items = new ArrayList<>();
