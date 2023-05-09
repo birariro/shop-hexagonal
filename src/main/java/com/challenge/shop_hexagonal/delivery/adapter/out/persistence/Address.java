@@ -1,4 +1,4 @@
-package com.challenge.shop_hexagonal.application.out.persistence;
+package com.challenge.shop_hexagonal.delivery.adapter.out.persistence;
 
 import javax.persistence.Embeddable;
 

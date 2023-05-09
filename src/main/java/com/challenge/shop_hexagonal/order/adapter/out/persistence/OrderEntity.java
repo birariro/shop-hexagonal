@@ -1,4 +1,4 @@
-package com.challenge.shop_hexagonal.application.out.persistence;
+package com.challenge.shop_hexagonal.order.adapter.out.persistence;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -16,14 +16,17 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.challenge.shop_hexagonal.delivery.adapter.out.persistence.DeliveryEntity;
+import com.challenge.shop_hexagonal.member.adapter.out.persistence.MemberEntity;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "orders")
+@Table(name = "tb_order")
 @Getter
 @Setter
-public class Order {
+public class OrderEntity {
 
     @Id
     @GeneratedValue
@@ -32,14 +35,14 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "member_id") //FK 지정
-    private Member member;
+    private MemberEntity member;
 
     @OneToMany(mappedBy = "order")
-    private List<OrderItem> orderItems = new ArrayList<>();
+    private List<OrderItemEntity> orderItems = new ArrayList<>();
 
     @OneToOne
     @JoinColumn(name = "delivery_id")
-    private Delivery delivery;
+    private DeliveryEntity delivery;
 
     private LocalDateTime orderDate; //주문시간
 

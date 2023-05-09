@@ -1,9 +1,9 @@
-package com.challenge.shop_hexagonal.application.out.persistence.item;
+package com.challenge.shop_hexagonal.item.adapter.out.persistence.item;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-import com.challenge.shop_hexagonal.application.out.persistence.Item;
+import com.challenge.shop_hexagonal.item.adapter.out.persistence.ItemEntity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +12,7 @@ import lombok.Setter;
 @DiscriminatorValue("B")
 @Getter
 @Setter
-public class Book extends Item {
+public class BookEntity extends ItemEntity {
     private String author;
     private String isbn;
 }

@@ -1,4 +1,4 @@
-package com.challenge.shop_hexagonal.application.out.persistence;
+package com.challenge.shop_hexagonal.member.adapter.out.persistence;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,14 +9,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.challenge.shop_hexagonal.delivery.adapter.out.persistence.Address;
+import com.challenge.shop_hexagonal.order.adapter.out.persistence.OrderEntity;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
+@Table(name = "tb_member")
 @Getter
 @Setter
-public class Member {
+public class MemberEntity {
     @Id
     @GeneratedValue
     @Column(name = "member_id")
@@ -28,5 +33,5 @@ public class Member {
     private Address address;
 
     @OneToMany(mappedBy = "member")//order 테이블에있는 member 필드가 나의 주체이다.
-    private List<Order> orders = new ArrayList<>();
+    private List<OrderEntity> orders = new ArrayList<>();
 }
