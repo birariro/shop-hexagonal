@@ -8,7 +8,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.challenge.shop_hexagonal.item.adapter.out.persistence.ItemEntity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -23,9 +22,8 @@ public class OrderItemEntity {
     @Column(name = "order_item_id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "item_id")
-    private ItemEntity item;
+    @Column(name = "item_id")
+    private Long item;
 
     @ManyToOne
     @JoinColumn(name = "order_id")

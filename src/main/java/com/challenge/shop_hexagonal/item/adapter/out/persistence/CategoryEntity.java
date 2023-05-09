@@ -21,7 +21,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name = "tb_category")
-public class CategoryEntity {
+class CategoryEntity {
 
     @Id
     @GeneratedValue

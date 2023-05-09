@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.challenge.shop_hexagonal.order.adapter.out.persistence.OrderEntity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,15 +18,15 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name = "tb_delivery")
-public class DeliveryEntity {
+class DeliveryEntity {
 
     @Id
     @GeneratedValue
     @Column(name = "delivery_id")
     private Long id;
 
-    @OneToOne(mappedBy = "delivery")
-    private OrderEntity order;
+    @Column(name = "order_id")
+    private Long order;
 
     @Embedded
     private Address address;

@@ -8,11 +8,8 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.challenge.shop_hexagonal.delivery.adapter.out.persistence.Address;
-import com.challenge.shop_hexagonal.order.adapter.out.persistence.OrderEntity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +18,7 @@ import lombok.Setter;
 @Table(name = "tb_member")
 @Getter
 @Setter
-public class MemberEntity {
+class MemberEntity {
     @Id
     @GeneratedValue
     @Column(name = "member_id")
@@ -32,6 +29,4 @@ public class MemberEntity {
     @Embedded
     private Address address;
 
-    @OneToMany(mappedBy = "member")//order 테이블에있는 member 필드가 나의 주체이다.
-    private List<OrderEntity> orders = new ArrayList<>();
 }

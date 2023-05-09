@@ -16,9 +16,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.challenge.shop_hexagonal.delivery.adapter.out.persistence.DeliveryEntity;
-import com.challenge.shop_hexagonal.member.adapter.out.persistence.MemberEntity;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,16 +30,14 @@ public class OrderEntity {
     @Column(name = "order_id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "member_id") //FK 지정
-    private MemberEntity member;
+    @Column(name = "member_id")
+    private Long member;
 
     @OneToMany(mappedBy = "order")
     private List<OrderItemEntity> orderItems = new ArrayList<>();
 
-    @OneToOne
-    @JoinColumn(name = "delivery_id")
-    private DeliveryEntity delivery;
+    @Column(name = "delivery_id")
+    private Long delivery;
 
     private LocalDateTime orderDate; //주문시간
 
