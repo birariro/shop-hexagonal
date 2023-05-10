@@ -6,6 +6,6 @@ import java.util.Optional;
 import com.challenge.shop_hexagonal.order.domain.Order;
 
 public interface LoadOrderPort {
-	List<Order> orders();
-	Optional<Order> order(Order.Id id);
+	List<Order> findAll();
+	Optional<Order> findById(Order.Id id);
 }

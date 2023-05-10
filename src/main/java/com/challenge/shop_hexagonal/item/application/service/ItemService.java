@@ -19,4 +19,10 @@ class ItemService implements LoadItemUseCase {
 	public List<Item> items() {
 		return loadItemPort.findAll();
 	}
+
+	@Override
+	public Item item(Long id) {
+		return loadItemPort.findById(Item.ItemId.of(id))
+			.orElseThrow(() -> new IllegalArgumentException());
+	}
 }

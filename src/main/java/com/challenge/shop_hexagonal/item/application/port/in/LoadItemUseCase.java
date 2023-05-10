@@ -7,4 +7,5 @@ import com.challenge.shop_hexagonal.item.domain.Item;
 public interface LoadItemUseCase {
 
 	List<Item> items();
+	Item item(Long id);
 }

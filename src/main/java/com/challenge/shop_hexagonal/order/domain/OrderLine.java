@@ -1,7 +1,9 @@
 package com.challenge.shop_hexagonal.order.domain;
 
+import lombok.Getter;
 import lombok.Value;
 
+@Getter
 public class OrderLine {
 
 	private OrderLine.Id id;
@@ -19,6 +21,9 @@ public class OrderLine {
 
 	public static OrderLine withId(Id id, Long itemId, int count, int price){
 		return new OrderLine(id, itemId, count, price);
+	}
+	public static OrderLine withoutId(Long itemId, int count, int price){
+		return new OrderLine(null, itemId, count, price);
 	}
 
 	public int getTotalPrice(){

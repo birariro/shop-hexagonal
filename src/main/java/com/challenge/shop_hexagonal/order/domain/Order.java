@@ -28,7 +28,9 @@ public class Order {
 		List<OrderLine> orderLines){
 		return new Order(id, memberId, deliveryId, status, orderLines);
 	}
-
+	public static Order withoutId(Long memberId, Long deliveryId, List<OrderLine> orderLines){
+		return new Order(null, memberId, deliveryId, OrderStatus.ORDER, orderLines);
+	}
 
 	@Value(staticConstructor = "of")
 	public static class Id {
