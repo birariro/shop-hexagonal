@@ -23,3 +23,8 @@ git clone git@github.com:k4keye/shop-hexagonal.git
 ```shell
 docker-compose up -d
 ```
+
+
+## Thinking
+- item 과 category 는 하나의 에그리거트 인가?
+  - item 을 생성하고 수정하는건 category의 역활이 아니기에 다른 에그리게트 일듯

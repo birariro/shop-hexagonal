@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.challenge.shop_hexagonal.order.domain.OrderLine;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -31,4 +32,9 @@ public class OrderItemEntity {
 
     private int orderPrice; //주문 가격
     private int count; // 주문 수량
+
+
+    public OrderLine toDomain(){
+        return OrderLine.withId(OrderLine.Id.of(this.id), this.item, this.count, this.orderPrice);
+    }
 }

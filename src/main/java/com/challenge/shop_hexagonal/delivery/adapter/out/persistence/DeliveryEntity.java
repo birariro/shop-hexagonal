@@ -1,15 +1,14 @@
 package com.challenge.shop_hexagonal.delivery.adapter.out.persistence;
 
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.challenge.shop_hexagonal.delivery.domain.DeliveryStatus;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -28,9 +27,9 @@ class DeliveryEntity {
     @Column(name = "order_id")
     private Long order;
 
-    @Embedded
-    private Address address;
+    private String city;
+    private String street;
+    private String zipcode;
 
-    @Enumerated(EnumType.STRING) //enum 을 사용할때는 반드시 string 저장으로 설정
-    private DeliveryStatus status;
+    private String status;
 }

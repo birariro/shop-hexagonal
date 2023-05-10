@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class RegisterMemberService implements RegisterMemberUseCase {
+class RegisterMemberService implements RegisterMemberUseCase {
 
 	private final LoadMemberPort loadMemberPort;
 	private final UpdateMemberPort updateMemberPort;

@@ -21,6 +21,6 @@ public class Member {
 
 	@Value(staticConstructor = "of")
 	public static class MemberId{
-		private Long value;
+		private final Long value;
 	}
 }

@@ -1,4 +1,4 @@
-package com.challenge.shop_hexagonal.item.adapter.out.persistence;
+package com.challenge.shop_hexagonal.category.adapter.out.persistence;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +13,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.challenge.shop_hexagonal.item.adapter.out.persistence.ItemEntity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -29,11 +31,8 @@ class CategoryEntity {
     private Long id;
     private String name;
 
-    @ManyToMany
-    @JoinTable(name = "tb_category_item",
-                joinColumns = @JoinColumn(name = "category_id"),
-                inverseJoinColumns = @JoinColumn(name = "item_id")) //다대다는 테이블에서는 구현하기위해서는 중간 테이블이 필요하다.
-    private List<ItemEntity> items = new ArrayList<>();
+    @OneToMany(mappedBy = "category")
+    private List<CategoryItemEntity> items = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "parent_id")
