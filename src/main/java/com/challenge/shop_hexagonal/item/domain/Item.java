@@ -20,6 +20,14 @@ public abstract class Item {
 		this.stockQuantity = stockQuantity;
 	}
 
+	public void downStockQuantity(int downCount){
+
+		if(this.stockQuantity - downCount >= 0)
+			this.stockQuantity -= downCount;
+
+		throw new IllegalArgumentException();
+	}
+
 	@Value(staticConstructor = "of")
 	public static class ItemId{
 		private final Long value;

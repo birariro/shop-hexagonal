@@ -1,6 +1,7 @@
 package com.challenge.shop_hexagonal.order.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import lombok.Getter;
 import lombok.Value;
@@ -31,6 +32,7 @@ public class Order {
 	public static Order withoutId(Long memberId, Long deliveryId, List<OrderLine> orderLines){
 		return new Order(null, memberId, deliveryId, OrderStatus.ORDER, orderLines);
 	}
+
 
 	@Value(staticConstructor = "of")
 	public static class Id {

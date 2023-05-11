@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.challenge.shop_hexagonal.order.domain.Money;
 import com.challenge.shop_hexagonal.order.domain.OrderLine;
 
 import lombok.AccessLevel;
@@ -45,7 +46,7 @@ public class OrderItemEntity {
     }
 
     public OrderLine toDomain(){
-        return OrderLine.withId(OrderLine.Id.of(this.id), this.item, this.count, this.orderPrice);
+        return OrderLine.withId(OrderLine.Id.of(this.id), this.item, this.count, Money.of(this.orderPrice));
     }
 
     public static OrderItemEntity toEntity(OrderLine orderLine){
@@ -53,7 +54,7 @@ public class OrderItemEntity {
         return new OrderItemEntity(
             orderLine.getId() == null ? null : orderLine.getId().getValue(),
             orderLine.getItemId(),
-            orderLine.getPrice(),
+            orderLine.getPrice().getValue(),
             orderLine.getCount()
         );
     }
