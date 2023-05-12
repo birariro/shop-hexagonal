@@ -22,9 +22,10 @@ public abstract class Item {
 
 	public void downStockQuantity(int downCount){
 
-		if(this.stockQuantity - downCount >= 0)
+		if(this.stockQuantity - downCount >= 0){
 			this.stockQuantity -= downCount;
-
+			return;
+		}
 		throw new IllegalArgumentException();
 	}
 

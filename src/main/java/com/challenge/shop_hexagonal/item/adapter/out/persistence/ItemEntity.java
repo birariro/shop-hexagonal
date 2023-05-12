@@ -62,19 +62,21 @@ public class ItemEntity {
 
     public Item toDomain(){
 
-        if(this.dtype == "A"){
-            return Album.withId(Item.ItemId.of(this.id), this.name, ItemType.columnToItemType(this.dtype), this.price, this.stockQuantity, this.artist, this.etc);
+        if(this.dtype.equals("ALBUM")){
+
+            return Album.withId(Item.ItemId.of(this.id), this.name, ItemType.valueOf(this.dtype), this.price, this.stockQuantity, this.artist, this.etc);
         }
-        if(this.dtype == "B"){
-            return Book.withId(Item.ItemId.of(this.id), this.name, ItemType.columnToItemType(this.dtype), this.price, this.stockQuantity, this.author, this.isbn);
+        if(this.dtype.equals("BOOK")){
+            return Book.withId(Item.ItemId.of(this.id), this.name, ItemType.valueOf(this.dtype), this.price, this.stockQuantity, this.author, this.isbn);
         }
 
-        return Movie.withId(Item.ItemId.of(this.id), this.name, ItemType.columnToItemType(this.dtype), this.price, this.stockQuantity, this.director, this.actor);
+        return Movie.withId(Item.ItemId.of(this.id), this.name, ItemType.valueOf(this.dtype), this.price, this.stockQuantity, this.director, this.actor);
     }
 
     public static ItemEntity toEntity(Item item){
 
-        if(item.getType() == ItemType.ALBUM){
+
+        if(item instanceof Album && item.getType() == ItemType.ALBUM){
             Album album = (Album)item;
             return new ItemEntity(
                 album.getId() == null ? null : album.getId().getValue(),
@@ -86,7 +88,7 @@ public class ItemEntity {
                 album.getEtc(),null,null,null,null
             );
         }
-        if(item.getType() == ItemType.BOOK){
+        if(item instanceof Book && item.getType() == ItemType.BOOK){
 
             Book book = (Book)item;
             return new ItemEntity(
@@ -101,20 +103,23 @@ public class ItemEntity {
                 book.getIsbn(),null,null
             );
         }
+        if(item instanceof Movie && item.getType() == ItemType.MOVIE){
+            Movie movie = (Movie)item;
+            return new ItemEntity(
+                movie.getId() == null ? null : movie.getId().getValue(),
+                movie.getName(),
+                movie.getType().toString(),
+                movie.getPrice(),
+                movie.getStockQuantity(),
+                null,
+                null,
+                null,
+                null,
+                movie.getDirector(),
+                movie.getActor()
+            );
+        }
+        throw new IllegalArgumentException();
 
-        Movie movie = (Movie)item;
-        return new ItemEntity(
-            movie.getId() == null ? null : movie.getId().getValue(),
-            movie.getName(),
-            movie.getType().toString(),
-            movie.getPrice(),
-            movie.getStockQuantity(),
-            null,
-            null,
-            null,
-            null,
-            movie.getDirector(),
-            movie.getActor()
-        );
     }
 }

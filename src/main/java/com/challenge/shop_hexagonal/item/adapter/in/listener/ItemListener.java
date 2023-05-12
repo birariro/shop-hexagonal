@@ -1,36 +1,33 @@
-package com.challenge.shop_hexagonal.item.application.service;
+package com.challenge.shop_hexagonal.item.adapter.in.listener;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.context.event.EventListener;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-import com.challenge.shop_hexagonal.item.application.port.out.LoadItemPort;
-import com.challenge.shop_hexagonal.item.application.port.out.UpdateItemPort;
-import com.challenge.shop_hexagonal.item.domain.Item;
+import com.challenge.shop_hexagonal.item.application.port.in.StockQuantityUseCase;
 import com.challenge.shop_hexagonal.order.domain.NewOrderEvent;
 import com.challenge.shop_hexagonal.order.domain.OrderLine;
 
 import lombok.RequiredArgsConstructor;
 
-@Service
+@Component
 @RequiredArgsConstructor
-class StockQuantityService {
+public class ItemListener {
 
-	private final LoadItemPort loadItemPort;
-	private final UpdateItemPort updateItemPort;
+	private final StockQuantityUseCase stockQuantityUseCase;
 
 	@EventListener(NewOrderEvent.class)
 	public void downStockQuantity(NewOrderEvent newOrderEvent){
+
 		List<OrderLine> orderLines = newOrderEvent.getOrder().getOrderLines();
 
 		orderLines.stream().collect(Collectors.toMap(OrderLine::getItemId, OrderLine::getCount))
 			.entrySet().forEach(
 				entry -> {
-					Item item = loadItemPort.findById(Item.ItemId.of(entry.getKey()))
-						.orElseThrow(() -> new IllegalArgumentException());
-					item.downStockQuantity(entry.getValue());
+					stockQuantityUseCase.down(entry.getKey(), entry.getValue());
+
 				}
 			);
 	}
